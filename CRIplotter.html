@@ -1,0 +1,133 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+
+<!DOCTYPE html>
+<html>
+<head>CRI R Values Plotter</head>
+<body>
+
+	<h2>CRI R Values Plotter</h2>
+	<form id="CRIplotter">
+    <input id="R1" type="text" placeholder="R1">
+    <input id="R2" type="number" placeholder="R2">
+    <input id="R3" type="number" placeholder="R3">
+    <input id="R4" type="number" placeholder="R4">
+    <input id="R5" type="number" placeholder="R5">
+    <input id="R6" type="number" placeholder="R6">
+    <input id="R7" type="number" placeholder="R7">
+    <input id="R8" type="number" placeholder="R8">
+    <input id="R9" type="number" placeholder="R9">
+    <input id="R10" type="number" placeholder="R10">
+    <input id="R11" type="number" placeholder="R11">
+    <input id="R12" type="number" placeholder="R12">
+    <input id="R13" type="number" placeholder="R13">
+    <input id="R14" type="number" placeholder="R14">
+    <input id="R15" type="number" placeholder="R15">
+    <input type="button" value="Add data" onclick="adddata()">
+</form>
+
+<canvas id="CRIplot" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById('CRIplot').getContext('2d');
+
+function adddata() {
+
+    //  assign R values from form
+      CRIplot.data.datasets[0].data[0] = document.getElementById("R1").value;
+      CRIplot.data.datasets[0].data[1] = document.getElementById("R2").value;
+      CRIplot.data.datasets[0].data[2] = document.getElementById("R3").value;
+      CRIplot.data.datasets[0].data[3] = document.getElementById("R4").value;
+      CRIplot.data.datasets[0].data[4] = document.getElementById("R5").value;
+      CRIplot.data.datasets[0].data[5] = document.getElementById("R6").value;
+      CRIplot.data.datasets[0].data[6] = document.getElementById("R7").value;
+      CRIplot.data.datasets[0].data[7] = document.getElementById("R8").value;
+      CRIplot.data.datasets[0].data[8] = document.getElementById("R9").value;
+      CRIplot.data.datasets[0].data[9] = document.getElementById("R10").value;
+      CRIplot.data.datasets[0].data[10] = document.getElementById("R11").value;
+      CRIplot.data.datasets[0].data[11] = document.getElementById("R12").value;
+      CRIplot.data.datasets[0].data[12] = document.getElementById("R13").value;
+      CRIplot.data.datasets[0].data[13] = document.getElementById("R14").value;
+      CRIplot.data.datasets[0].data[14] = document.getElementById("R15").value;
+      CRIplot.update();
+    }
+
+var CRIplot = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11' , 'R12' , 'R13' , 'R14' , 'R15'],
+        datasets: [{
+            label: 'CRI - R Values',
+            data: [92, 94, 95, 94, 92, 93, 93, 84, 60, 86, 85, 81, 82, 97, 98],
+            backgroundColor: [
+                'rgba(	185, 123, 104, 0.6)',
+                'rgba(162, 129, 80, 0.6)',
+                'rgba(133, 141, 61, 0.6)',
+                'rgba(92, 141, 100, 0.6)',
+                'rgba(103, 140, 136, 0.6)',
+                'rgba(116, 131, 161, 0.6)',
+                'rgba(163, 122, 153, 0.6)',
+                'rgba(193, 119, 141, 0.6)',
+                'rgba(193, 23, 44, 0.6)',
+                'rgba(230, 181, 55, 0.6)',
+                'rgba(41, 121, 87, 0.6)',
+                'rgba(0, 62, 118, 0.6)',
+                'rgba(234, 171, 131, 0.6)',
+                'rgba(85, 91, 49, 0.6)',
+                'rgba(255, 159, 64, 0.6)'
+            ],
+            borderColor: [
+                'rgba(	185, 123, 104, 1)',
+                'rgba(162, 129, 80, 1)',
+                'rgba(133, 141, 61, 1)',
+                'rgba(92, 141, 100, 1)',
+                'rgba(103, 140, 136, 1)',
+                'rgba(116, 131, 161, 1)',
+                'rgba(163, 122, 153, 1)',
+                'rgba(193, 119, 141, 1)',
+                'rgba(193, 23, 44, 1)',
+                'rgba(230, 181, 55, 1)',
+                'rgba(41, 121, 87, 1)',
+                'rgba(0, 62, 118, 1)',
+                'rgba(234, 171, 131, 1)',
+                'rgba(85, 91, 49, 1)',
+                'rgba(193, 128, 105, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        plugins: {
+        	labels: {
+    				render: 'value',
+    				position: 'outside'
+  				}
+        }
+    }
+});
+</script>
+
+<!--form input range validator(from 1 to 100)-->
+<script>
+$('input').on('input', function () {
+    
+    var value = $(this).val();
+    
+    if ((value !== '') && (value.indexOf('.') === -1)) {
+        
+        $(this).val(Math.max(Math.min(value, 100), 1));
+    }
+});
+</script>
+
+</body>
+</html>
+
+
